@@ -1,4 +1,4 @@
-export class Event {
+export class CalendarEvent {
     _id:string
     type: string
     color: string
@@ -9,5 +9,4 @@ export class Event {
     location: string
     createdAt: Date
     updatedAt: Date
-
 }

@@ -18,6 +18,7 @@ export class Calendar {
         self.openDay(current);
       }, 500);
     }
+    this.formPopover()
   }
 
   draw = function() {
@@ -58,11 +59,11 @@ export class Calendar {
   drawMonth = function() {
     var self = this;
     
-    this.events.forEach((ev) =>{
-     console.log(ev.date)
-    //  ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
-     console.log(ev.date)
-    });
+    // this.events.forEach((ev) =>{
+    //  console.log(ev.date)
+    // //  ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
+    //  console.log(ev.date)
+    // });
     
     
     if(this.month) {
@@ -162,9 +163,6 @@ export class Calendar {
     if(day.month() === this.current.month()) {
       
       let todaysEvents = this.events.reduce(function(memo, ev) {
-        console.log("here")
-        console.log(ev.date)
-        console.log(day.format("YYYY-DD-MM"))
         if(ev.date===day.format("YYYY-DD-MM")) {
           memo.push(ev);
         }
@@ -244,15 +242,29 @@ export class Calendar {
   }
 
   renderEvents = function(events, ele) {
+    var self=this;
+
     // Remove any events in the current details element
     var currentWrapper = ele.querySelector('.events');
     var wrapper = this.createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
+
+
+
+    //Create new event button
+    var addEventButton = this.createElement('button','addEventButton', "New event")
+    addEventButton.addEventListener('click', function() { 
+        self.displayForm();
+    });
+
+    wrapper.appendChild(addEventButton);
+
+
 
     events.forEach((ev) => {
       var div = this.createElement('div', 'event');
       var square = this.createElement('div', 'event-category ' + ev.color);
       var span = this.createElement('span', '', ev.eventName);
-
+      
       div.appendChild(square);
       div.appendChild(span);
       wrapper.appendChild(div);
@@ -336,6 +348,34 @@ export class Calendar {
       ele.innderText = ele.textContent = innerText;
     }
     return ele;
+  }
+  displayForm=function(){      
+    var form=document.getElementById("eventForm");
+    if(form!=null){
+        form.style.display="block"
+    }
+  }
+
+  
+  formPopover=function(){
+    var form = document.getElementById('eventForm');
+    var span = document.getElementsByClassName("closeForm")[0];
+    var submit= document.getElementById("submitEvent");
+
+    //Close the modal after submiting the form
+    submit.addEventListener("click", function(){
+      form.style.display="none";
+    })
+    // When the user clicks on <span> (x), close the modal
+    span.addEventListener("click",function() {
+      form.style.display = "none";
+    })
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == form) {
+            form.style.display = "none";
+        }
+    }
   }
 
 

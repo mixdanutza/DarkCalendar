@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from "./event";
 import { Calendar } from "./calendar";
+import { CalendarEvent } from "./calendar-event";
 @Component({
   selector: 'app-orange-calendar',
   templateUrl: './orange-calendar.component.html',
   styleUrls: ['./orange-calendar.component.css']
 })
 export class OrangeCalendarComponent implements OnInit {
-  new_event: Event=new Event();
-      data = [
+  new_event: CalendarEvent=new CalendarEvent();
+  data = [
     { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', date: '2017-06-09' },
     { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange', date: '2017-06-08' },
     { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange', date: '2017-12-09' },
@@ -39,6 +39,24 @@ export class OrangeCalendarComponent implements OnInit {
   ngOnInit() {
       let calendar = new Calendar('#calendar', this.data);
        window.Calendar = window.Calendar || {};
+
   }
+
+  ngAfterViewInit(){
+      var butt=document.getElementById("addEventButton");
+       if(butt){
+         console.log("Button exists")
+         butt.addEventListener("click", function() {
+           console.log("HEREEEEE")
+         });
+       }
+  }
+
+  //Create new event (call create event function from services)
+  createEvent(){
+    console.log("NEW EVENT TITLE: " + this.new_event.type)
+  }
+  
+
 
 }
