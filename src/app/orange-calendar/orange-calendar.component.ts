@@ -19,6 +19,7 @@ export class OrangeCalendarComponent implements OnInit {
     { eventName: 'Game vs Denver', calendar: 'Sports', color: 'blue', date: '2017-03-09' },
     { eventName: 'Game vs San Degio', calendar: 'Sports', color: 'blue', date: '2017-23-09' },
     { eventName: 'Practice Game Seattle', calendar: 'Sports', color: 'blue', date: '2017-06-09' },
+    { eventName: 'Game vs Houston', calendar: 'Sports', color: 'blue', date: '2017-07-09' },
     
 
     { eventName: 'School Play', calendar: 'Kids', color: 'yellow', date: '2017-02-08' },

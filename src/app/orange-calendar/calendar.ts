@@ -190,6 +190,7 @@ export class Calendar {
 
       todaysEvents.forEach((ev) =>{
         var evSpan = this.createElement('span', ev.color);
+
         element.appendChild(evSpan);
       });
     }
@@ -282,9 +283,18 @@ export class Calendar {
 
     events.forEach((ev) => {
       var div = this.createElement('div', 'event');
+      var info=document.querySelector(".infoBox");
       var square = this.createElement('div', 'event-category ' + ev.color);
       var span = this.createElement('span', '', ev.eventName);
       
+      div.addEventListener('mouseover', function(){
+          var infoBox=self.createElement('div', 'infoBox', ev.eventName);
+          span.appendChild(infoBox);
+      })
+      div.addEventListener('mouseout', function(){
+          var info=document.querySelector(".infoBox");
+          info.remove();  
+      })
       div.appendChild(square);
       div.appendChild(span);
       wrapper.appendChild(div);
