@@ -282,18 +282,27 @@ export class Calendar {
 
 
     events.forEach((ev) => {
+
+
+
       var div = this.createElement('div', 'event');
-      var info=document.querySelector(".infoBox");
+    // *********************************************************************************************
+  
+      var infoContent=this.drawEventInfoBox(ev);
+      var infoBox=self.createElement('div', 'infoBox', ev.eventName);
       var square = this.createElement('div', 'event-category ' + ev.color);
       var span = this.createElement('span', '', ev.eventName);
+
       
-      div.addEventListener('mouseover', function(){
-          var infoBox=self.createElement('div', 'infoBox', ev.eventName);
-          span.appendChild(infoBox);
-      })
-      div.addEventListener('mouseout', function(){
+      div.addEventListener('click', function(){
           var info=document.querySelector(".infoBox");
-          info.remove();  
+          if(info){
+            info.remove();  
+          }else{
+            div.appendChild(infoBox);
+            var info=document.querySelector(".infoBox");
+            info.innerHTML = "<p class='infoText'><strong>Title: </strong>"+ev.eventName+"</p> <p class='infoText'><strong>Type: </strong>"+ev.calendar+"</p> <p class='infoText'><strong>Date: </strong>"+ev.date+"</p>"
+          } 
       })
       div.appendChild(square);
       div.appendChild(span);
@@ -406,6 +415,12 @@ export class Calendar {
             form.style.display = "none";
         }
     }
+  }
+  drawEventInfoBox = function(ev){
+    var title=this.createElement('p', 'infoTitle', ev.eventTile)
+    var type=this.createElement('p', 'infoType', ev.type)
+    var date=this.createElement('p')
+    return "";
   }
 
 
