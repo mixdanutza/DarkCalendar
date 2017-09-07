@@ -46,7 +46,6 @@
       margin: 0;
       padding: 0;
       font-size: 20px;
-      line-height: 50px;
       font-weight: 100;
       letter-spacing: 1px;
     }
@@ -98,16 +97,16 @@
     }
     
     .month.in.prev {
-      -webkit-animation: moveFromBottomFadeMonth .4s ease-out;
-      -moz-animation: moveFromBottomFadeMonth .4s ease-out;
-      animation: moveFromBottomFadeMonth .4s ease-out;
+      -webkit-animation: moveFromTopFadeMonth .4s ease-out;
+      -moz-animation: moveFromTopFadeMonth .4s ease-out;
+      animation: moveFromTopFadeMonth .4s ease-out;
       opacity: 1;
     }
     
     .month.out.prev {
-      -webkit-animation: moveToBottomFadeMonth .4s ease-in;
-      -moz-animation: moveToBottomFadeMonth .4s ease-in;
-      animation: moveToBottomFadeMonth .4s ease-in;
+      -webkit-animation: moveToTopFadeMonth .4s ease-in;
+      -moz-animation: moveToTopFadeMonth .4s ease-in;
+      animation: moveToTopFadeMonth .4s ease-in;
       opacity: 1;
     }
     
@@ -134,6 +133,7 @@
     
     .day.today {
       color: rgba(156, 202, 235, 1);
+      border: .5px solid;
     }
     
     .day-name {
@@ -215,8 +215,9 @@
       padding: 7px 0;
       overflow-y: auto;
       overflow-x: hidden;
+
     }
-    
+
     .events.in {
       -webkit-animation: fadeIn .3s ease both;
       -moz-animation: fadeIn .3s ease both;
@@ -247,7 +248,22 @@
       letter-spacing: .5px;
       padding: 2px 16px;
       vertical-align: top;
+      border-bottom: .5px solid rgba(192, 192, 192, 0);
+      border-top: 0.2px solid rgba(192, 192, 192, 0);
+      
+      -webkit-transition: border 1500ms ease;
+      -moz-transition: border 1500ms ease;
+      -ms-transition: border 1500ms ease;
+      -o-transition: border 1500ms ease;
+      transition: border 1500ms ease; 
     }
+    .event:hover{
+        box-shadow: 5px 10px 3px rgba(192, 192, 192, 0) ;
+        border-bottom: .5px solid #4B4B4B;
+        border-top: 0.1px solid #4B4B4B;
+        
+    }
+    
     
     .event.empty {
       color: #eee;
@@ -390,22 +406,19 @@
       to { opacity: 0; padding: 0px; height: 0px; }
     }
     
-
-    .addEventButton{
+/*Dark Buttons*/
+    .darkButton{
       display: inline-block;
       vertical-align: top;
-      padding: 10px 25px;
       font-family: inherit;
       cursor: pointer;
       font-size: 15px;
-      color: #111;
       text-align: center;
       text-decoration: none;
       text-shadow: 0 0 2px rgba(255, 255, 255, 1);
       background-color: #ccc;
       background-clip: padding-box;
       border: 1px solid;
-      border-color: #202020 #1a1a1a #111;
       border-radius: 2px;
       background-image: -webkit-linear-gradient(top, #efefef, #777);
       background-image: -moz-linear-gradient(top, #efefef, #777);
@@ -423,14 +436,22 @@
       background-image: -o-linear-gradient(top, #2a2a2a, #1b1b1b);
       background-image: linear-gradient(to bottom, #2a2a2a, #1b1b1b);
     }
-    .addEventButton:hover{
+    .darkButton:hover{
       background-color: #363636;
       background-image: -webkit-linear-gradient(top, #404040, #2a2a2a);
       background-image: -moz-linear-gradient(top, #404040, #2a2a2a);
       background-image: -o-linear-gradient(top, #404040, #2a2a2a);
       background-image: linear-gradient(to bottom, #404040, #2a2a2a);
     }
+    .addEventButton{
+      padding: 5px 10px;
+      margin-left: 16px;
+    }
 
+    .todayButton{
+      padding: 2px 6px;
+      margin:0px;
+    }
 
 
 

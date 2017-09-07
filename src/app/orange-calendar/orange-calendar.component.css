@@ -1,7 +1,3 @@
-
-
-    
-
 /* EVENT  FORM CSS */
 /* The form (background) */
 .event {
@@ -109,10 +105,6 @@ label.form_label{
 }
 
 
-
-
-
-
 .displayDate{
   width: 100%;
   margin: 2% 10% 2% 40%;
@@ -120,4 +112,7 @@ label.form_label{
   line-height: normal;
   padding: 0px;
 }
+
+
+
 

@@ -11,7 +11,8 @@ export class Calendar {
     this.events = events;
     this.current = moment().date(1);
     this.draw();
-    const current = document.querySelector('.today');
+    var current = document.querySelector('.today');
+    
     if(current) {
       var self = this;
       window.setTimeout(function() {
@@ -46,7 +47,25 @@ export class Calendar {
       var left = this.createElement('div', 'left');
       left.addEventListener('click', function() { self.prevMonth(); });
 
+      //Create today button 
+      var todayButton=this.createElement('button', 'todayButton', 'Today');
+      todayButton.className += " darkButton"
+      todayButton.addEventListener('click', ()=>{
+          this.current = moment().date(1);
+          this.draw();
+          var current = document.querySelector('.today');
+          
+          if(current) {
+          console.log(current +"^^^^")
+            var self = this;
+            window.setTimeout(function() {
+              self.openDay(current);
+            }, 500);
+          }
+      })
+
       // Append the Elements
+      this.header.appendChild(todayButton)
       this.header.appendChild(this.title); 
       this.header.appendChild(right);
       this.header.appendChild(left);
@@ -71,7 +90,7 @@ export class Calendar {
       this.oldMonth.className = 'month out ' + (self.next ? 'next' : 'prev');
       this.oldMonth.addEventListener('webkitAnimationEnd', function() {
         self.oldMonth.parentNode.removeChild(self.oldMonth);
-        console.log("Error here" + this)
+
         self.month = self.createElement('div', 'month');
         self.backFill();
         self.currentMonth();
@@ -252,6 +271,7 @@ export class Calendar {
 
     //Create new event button
     var addEventButton = this.createElement('button','addEventButton', "New event")
+    addEventButton.className += " darkButton";
     addEventButton.addEventListener('click', function() { 
         self.displayForm();
     });
